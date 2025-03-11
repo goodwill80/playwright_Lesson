@@ -51,9 +51,14 @@ test("test duck duck go search for india", async ({ page }) => {
   const searchBox = page.getByLabel("Search with DuckDuckGo", { exact: true }); // arial-label with exact Match, this is an assertion
   await searchBox.fill("india"); // enter text "india" into searchbox
   await searchBox.press("Enter"); // press enter in searchBox
-  await expect(page).toHaveTitle("india at DuckDuckGo");
+  await expect(page).toHaveTitle("india at DuckDuckGo", { timeout: 10000 });
   // Command to test a specific test in line 34 - "npx playwright test first_demo.spec.ts:20 --project chromium --list"
 });
 
 // This will specifically run the specific file on only chromium, and using 1 x worker (thread) on headed
 // npx playwright test first_demo.spec.ts --project chromium --workers 1 --headed
+// With workers and trace report
+// npx playwright test first_demo.spec.ts --project firefox --workers 1 --headed --trace on
+
+// Run with UI
+// npx playwright test first_demo.spec.ts --ui
