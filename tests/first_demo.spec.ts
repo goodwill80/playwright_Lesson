@@ -47,6 +47,7 @@ test.skip("test bing search page for india", async ({ page }) => {
 // Able to passed
 test("test duck duck go search for india", async ({ page }) => {
   await page.goto("https://duckduckgo.com/");
+  // await page.goto("/"); // You can specifies default url in playwright.config.ts and just put a "/"
   // await expect(page).toHaveTitle("Search - Microsoft Bing");
   const searchBox = page.getByLabel("Search with DuckDuckGo", { exact: true }); // arial-label with exact Match, this is an assertion
   await searchBox.fill("india"); // enter text "india" into searchbox
@@ -55,6 +56,11 @@ test("test duck duck go search for india", async ({ page }) => {
   // Command to test a specific test in line 34 - "npx playwright test first_demo.spec.ts:20 --project chromium --list"
 });
 
+// Select specific test case
+// npx playwright test -g "test duck duck go search for india" --project "Microsoft Edge" --headed --trace on
+// npx playwright test -g "duck duck go" --list
+// npx playwright test -g "duck duck go" --project "Mobile Chrome" --headed --trace on
+
 // This will specifically run the specific file on only chromium, and using 1 x worker (thread) on headed
 // npx playwright test first_demo.spec.ts --project chromium --workers 1 --headed
 // With workers and trace report
@@ -62,3 +68,7 @@ test("test duck duck go search for india", async ({ page }) => {
 
 // Run with UI
 // npx playwright test first_demo.spec.ts --ui
+
+// You can also choose the type of reports to generate besides html
+// npx playwright test -g "duck duck go" --reporter list
+// npx playwright test -g "duck duck go" --reporter json
