@@ -49,13 +49,19 @@ test("test duck duck go search for india", async ({ page }) => {
   await page.goto("https://duckduckgo.com/");
   // await page.goto("/"); // You can specifies default url in playwright.config.ts and just put a "/"
   // await expect(page).toHaveTitle("Search - Microsoft Bing");
-  const searchBox = page.getByLabel("Search with DuckDuckGo", { exact: true }); // arial-label with exact Match, this is an assertion
+  // const searchBox = page.getByLabel("Search with DuckDuckGo", { exact: true }); // arial-label with exact Match, this is an assertion
+  // const searchBox = page.locator("#searchbox_input"); // by CSS
+  const searchBox = page.locator('xpath=//input[@id="searchbox_input"]'); // by xPath
   await searchBox.fill("india"); // enter text "india" into searchbox
-  await searchBox.press("Enter"); // press enter in searchBox
+  // const magnifierGlassBtn = page.getByLabel("Search", { exact: true });
+  const magnifierGlassBtn = page.locator(
+    ".iconButton_button__A_Uiu.searchbox_searchButton__LxebD"
+  );
+  await magnifierGlassBtn.click();
+  // await searchBox.press("Enter"); // press enter in searchBox
   await expect(page).toHaveTitle("india at DuckDuckGo", { timeout: 10000 });
   // Command to test a specific test in line 34 - "npx playwright test first_demo.spec.ts:20 --project chromium --list"
 });
-
 // Select specific test case
 // npx playwright test -g "test duck duck go search for india" --project "Microsoft Edge" --headed --trace on
 // npx playwright test -g "duck duck go" --list
