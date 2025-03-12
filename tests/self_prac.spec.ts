@@ -8,5 +8,11 @@ test.describe("self pract on site", () => {
   });
 });
 
+test("test", async ({ page }) => {
+  await page.goto("https://demo.chetanpanchal.com/");
+  await page.getByText("large size").click();
+  await expect(page.locator("#lists")).toContainText("large size");
+});
+
 // Code gen
 // npx playwright codegen https://demo.chetanpanchal.com/
