@@ -51,6 +51,7 @@ test("test duck duck go search for india", async ({ page }) => {
   // await expect(page).toHaveTitle("Search - Microsoft Bing");
   // const searchBox = page.getByLabel("Search with DuckDuckGo", { exact: true }); // arial-label with exact Match, this is an assertion
   // const searchBox = page.locator("#searchbox_input"); // by CSS
+  // const searchBox = page.locator('xpath=//input[@id="searchbox_input"]').nth(1);
   const searchBox = page.locator('xpath=//input[@id="searchbox_input"]'); // by xPath
   await searchBox.fill("india"); // enter text "india" into searchbox
   // const magnifierGlassBtn = page.getByLabel("Search", { exact: true });
