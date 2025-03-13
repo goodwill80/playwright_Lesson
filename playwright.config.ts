@@ -1,4 +1,5 @@
 import { defineConfig, devices, test } from "@playwright/test";
+import globalTeardown from "./globalTeardown";
 
 // Create a file .env and define ci
 /**
@@ -14,6 +15,8 @@ import { defineConfig, devices, test } from "@playwright/test";
  */
 export default defineConfig({
   testDir: "./tests",
+  globalSetup: require.resolve("./global.ts"),
+  globalTeardown: require.resolve("./globalTeardown.ts"),
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
