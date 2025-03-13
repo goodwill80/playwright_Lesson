@@ -19,8 +19,8 @@ test("screenshot", async ({ page }) => {
   //     await page.screenshot({ path: "screenshot2.png" });
   //   }
 
-  let title = await page.title();
-  if (title !== "Google") {
-    await page.screenshot({ path: "screenshotError.png" });
-  }
+  //   let title = await page.title();
+  //   if (title !== "Google") {
+  //     await page.screenshot({ path: "screenshotError.png" });
+  //   }
 });
