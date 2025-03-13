@@ -1,5 +1,6 @@
 import { test, expect, Page, BrowserContext } from "@playwright/test";
 
+// To test every in the same page, we need to take over the control of the creation of the page
 test.describe("1 page of multiple tests", () => {
   let page: Page;
   let context: BrowserContext;
