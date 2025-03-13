@@ -9,7 +9,9 @@ test.describe("chromium only", () => {
   test.beforeAll(async () => {});
 });
 
-test.fail("Must fail", async ({}) => {});
+test.fail("Must fail", async ({ page }) => {
+  await page.goto("https://www.yahoo.com");
+});
 
 test.fixme("Must fix", async ({ page }) => {
   await page.goto("https:www.google.com");
@@ -34,8 +36,19 @@ test.describe(
   () => {
     test(
       "test full report",
-      { annotation: { type: "name", description: "report" } },
-      () => {}
+      {
+        annotation: [
+          { type: "issue", description: "https://github.com" },
+          { type: "performance", description: "very slow" },
+        ],
+      },
+      async ({ page }) => {}
     );
+    test("example test", async ({ page, browser }) => {
+      test.info().annotations.push({
+        type: "browswer versions",
+        description: browser.version(),
+      });
+    });
   }
 );
